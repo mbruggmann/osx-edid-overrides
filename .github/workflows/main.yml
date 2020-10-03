@@ -1,6 +1,10 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -8,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run python tests
-        run: python3 test/test.py
+        run: PYTHONPATH=. python3 test/test.py
