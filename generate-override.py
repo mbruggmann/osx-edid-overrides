@@ -1,20 +1,32 @@
 import subprocess
 import re
 from pathlib import Path
+from collections import namedtuple
+
+Display = namedtuple('Display', ['vendor_id', 'product_id', 'name', 'edid'])
 
 
-def get_display_edids():
+def get_ioreg_displays():
     """
-    Finds (vendorid, productid, edid) tuples for every connected display
+    Query 'ioreg' for displays, and return the output as a string
     """
     cmd = ['ioreg', '-l', '-d0', '-w', '0', '-r', '-c', 'AppleDisplay']
-    output = subprocess.run(cmd, text=True, capture_output=True).stdout
+    return subprocess.run(cmd, text=True, capture_output=True).stdout
 
-    edids = re.findall("IODisplayEDID.*?<([a-z0-9]+)>", output)
-    vendorids = re.findall("DisplayVendorID.*?([0-9]+)", output)
-    productids = re.findall("DisplayProductID.*?([0-9]+)", output)
 
-    return list(zip(vendorids, productids, edids))
+def find_display_data(ioreg):
+    """
+    Finds (vendorid, productid, edid) tuples for displays in the ioreg data
+    """
+    edids = re.findall("IODisplayEDID.*?<([a-z0-9]+)>", ioreg)
+    vendorids = re.findall("DisplayVendorID.*?([0-9]+)", ioreg)
+    productids = re.findall("DisplayProductID.*?([0-9]+)", ioreg)
+    return [Display(
+        vendor_id = v,
+        product_id = p,
+        name = display_name_from_edid(e),
+        edid = e
+    ) for v, p, e in zip(vendorids, productids, edids)]
 
 
 def display_name_from_edid(edid):
@@ -40,12 +52,12 @@ def display_name_from_edid(edid):
     return name
 
 
-def generate_override_file(vendorid, productid, name):
+def generate_override_file(display):
     """
     Generates an override file for the display
     """
-    vendorpath = "DisplayVendorID-%0.2x" % int(vendorid)
-    productpath = "DisplayProductId-%0.2x" % int(productid)
+    vendorpath = "DisplayVendorID-%0.2x" % int(display.vendor_id)
+    productpath = "DisplayProductId-%0.2x" % int(display.product_id)
     path = Path('.') / 'Overrides' / vendorpath / productpath
 
     if path.exists():
@@ -62,7 +74,7 @@ def generate_override_file(vendorid, productid, name):
 <plist version="1.0">
 <dict>
 	<key>DisplayProductName</key>
-	<string>{name} (EDID override)</string>
+	<string>{display.name} (EDID override)</string>
 	<key>edid-patches</key>
 	<array>
 		<dict>
@@ -78,11 +90,11 @@ def generate_override_file(vendorid, productid, name):
     return path
 
 
-def print_install_command(name, path):
+def print_install_command(display, path):
     """
     Print out the command to install the override
     """
-    print(f"Install the override for {name} with the following command:")
+    print(f"Install the override for {display.name} with the following command:")
 
     overrides = Path('/Library/Displays/Contents/Resources')
     source = path.absolute()
@@ -93,13 +105,11 @@ def print_install_command(name, path):
 
 
 def main():
-    for display in get_display_edids():
-        vendorid = display[0]
-        productid = display[1]
-        edid = display[2]
-        name = display_name_from_edid(edid)
-        path = generate_override_file(vendorid, productid, name)
-        print_install_command(name, path)
+    ioreg = get_ioreg_displays()
+    displays = find_display_data(ioreg)
+    for display in displays:
+        path = generate_override_file(display)
+        print_install_command(display, path)
 
 
 if __name__ == "__main__":
