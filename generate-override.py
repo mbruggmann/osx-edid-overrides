@@ -53,8 +53,7 @@ def generate_override_file(vendorid, productid, name):
         return path
 
     print('Generating file', path)
-    if not path.parent.exists():
-        path.parent.mkdir()
+    path.parent.mkdir(parents=True, exist_ok=True)
 
     path.touch()
     path.write_text(f"""\
