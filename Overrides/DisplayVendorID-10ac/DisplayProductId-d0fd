@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DisplayProductName</key>
+	<string>DELL P2720DC (EDID override)</string>
+	<key>edid-patches</key>
+	<array>
+		<dict>
+			<key>offset</key>
+			<integer>131</integer>
+			<key>data</key>
+			<data>wQ==</data>
+		</dict>
+	</array>
+</dict>
+</plist>
