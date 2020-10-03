@@ -52,14 +52,19 @@ def display_name_from_edid(edid):
     return name
 
 
-def generate_override_file(display):
+def path_for_override_file(display):
+    """
+    Determine the path where the override file should be written
+    """
+    vendorpath = "DisplayVendorID-%0.2x" % display.vendor_id
+    productpath = "DisplayProductID-%0.2x" % display.product_id
+    return Path('Overrides') / vendorpath / productpath
+
+
+def generate_override_file(display, path):
     """
     Generates an override file for the display
     """
-    vendorpath = "DisplayVendorID-%0.2x" % display.vendor_id
-    productpath = "DisplayProductId-%0.2x" % display.product_id
-    path = Path('.') / 'Overrides' / vendorpath / productpath
-
     if path.exists():
         print('File already exists, nothing to do', path)
         return path
@@ -87,8 +92,6 @@ def generate_override_file(display):
 </dict>
 </plist>""")
 
-    return path
-
 
 def print_install_command(display, path):
     """
@@ -108,7 +111,8 @@ def main():
     ioreg = get_ioreg_displays()
     displays = find_display_data(ioreg)
     for display in displays:
-        path = generate_override_file(display)
+        path = path_for_override_file(display)
+        generate_override_file(display, path)
         print_install_command(display, path)
 
 

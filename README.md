@@ -32,7 +32,7 @@ $ cd osx-edid-overrides
 $ python3 generate_override.py
 Generating file Overrides/DisplayVendorID-10ac/DisplayProductId-d0fd
 Install the override for DELL P2720DC with the following command:
-sudo mkdir -p /Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac && sudo cp /Users/username/github/osx-edid-overrides/Overrides/DisplayVendorID-10ac/DisplayProductId-d0fd /Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac/DisplayProductId-d0fd
+sudo mkdir -p /Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac && sudo cp /Users/username/github/osx-edid-overrides/Overrides/DisplayVendorID-10ac/DisplayProductID-d0fd /Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac/DisplayProductID-d0fd
 ```
 
 That will create the necessary directory structure and file with the EDID
