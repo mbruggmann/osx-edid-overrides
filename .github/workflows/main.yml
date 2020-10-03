@@ -1,0 +1,11 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run python tests
+        run: python3 test/test.py
