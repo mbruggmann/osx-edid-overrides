@@ -22,8 +22,8 @@ def find_display_data(ioreg):
     vendorids = re.findall("DisplayVendorID.*?([0-9]+)", ioreg)
     productids = re.findall("DisplayProductID.*?([0-9]+)", ioreg)
     return [Display(
-        vendor_id = v,
-        product_id = p,
+        vendor_id = int(v),
+        product_id = int(p),
         name = display_name_from_edid(e),
         edid = e
     ) for v, p, e in zip(vendorids, productids, edids)]
@@ -56,8 +56,8 @@ def generate_override_file(display):
     """
     Generates an override file for the display
     """
-    vendorpath = "DisplayVendorID-%0.2x" % int(display.vendor_id)
-    productpath = "DisplayProductId-%0.2x" % int(display.product_id)
+    vendorpath = "DisplayVendorID-%0.2x" % display.vendor_id
+    productpath = "DisplayProductId-%0.2x" % display.product_id
     path = Path('.') / 'Overrides' / vendorpath / productpath
 
     if path.exists():

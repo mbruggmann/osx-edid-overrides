@@ -55,3 +55,10 @@ It has shown to work in the following configurations:
 | Monitor         | Laptop               | Cable   | Result                             |
 | --------------- | -------------------- | ------- | ---------------------------------- |
 | Dell P2720DC    | MacBook Pro 13, 2015 | HDMI    | :heavy_check_mark: Switched to RGB |
+
+## Development
+
+You can run the tests like so:
+```bash
+PYTHONPATH=. python3 test/test.py
+```

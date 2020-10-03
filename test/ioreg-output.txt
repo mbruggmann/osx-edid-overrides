@@ -1,0 +1,18 @@
++-o AppleDisplay  <class AppleDisplay, id 0x100012c3a, registered, matched, active, busy 0 (1 ms), retain 7>
+    {
+      "IOClass" = "AppleDisplay"
+      "CFBundleIdentifier" = "com.apple.iokit.IOGraphicsFamily"
+      "IOProviderClass" = "IODisplayConnect"
+      "DisplayProductID" = 53501
+      "IODisplayEDID" = <00ffffffffffff0010acfdd0535834301f1e0103803c2278ea9325a9544d9e250c5054a54b008100b300d100714fa9408180d1c00101565e00a0a0a029503020350055502100001a000000ff00394351485430330a2020202020000000fc0044454c4c20503237323044430a000000fd00314b1d711c000a202020202020018802031ab14f90050403020716010611121513141f65030c001000023a801871382d40582c450055502100001e011d8018711c1620582c250055502100009e7e3900a080381f4030203a0055502100001a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000028>
+      "IODisplayPrefsKey" = "IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/IGPU@2/AppleIntelFramebuffer@2/display0/AppleDisplay-10ac-d0fd"
+      "IOPowerManagement" = {"CapabilityFlags"=49152,"MaxPowerState"=3,"CurrentPowerState"=3}
+      "IOProbeScore" = 2000
+      "IODisplayParameters" = {"bgsc"={"min"=0,"max"=65536,"value"=65536},"pscn"={"min"=8900,"max"=10000,"value"=10000},"rgsc"={"min"=0,"max"=65536,"value"=65536},"cmod"={"min"=0,"max"=4096,"value"=256},"ggsc"={"min"=0,"max"=65536,"value"=65536},"cyuv"={"min"=0,"max"=268435456,"value"=268435456},"vblm"={"min"=0,"max"=196608,"value"=65536},"ownr"=4294968454,"colr"={"min"=0,"max"=18446744073709551615,"value"=257}}
+      "IOMatchCategory" = "IODefaultMatchCategory"
+      "IODisplayAttributes" = {"IODisplayAttributes"=<676174760000000073676c6600000000726c6f631101000063706220020202006364670080808000676c666401000000>,"IODisplayVSDB030C00"=<1000>}
+      "IODisplayConnectFlags" = <00000000>
+      "CFBundleIdentifierKernel" = "com.apple.iokit.IOGraphicsFamily"
+      "DisplayVendorID" = 4268
+      "DisplaySerialNumber" = 808736851
+    }
