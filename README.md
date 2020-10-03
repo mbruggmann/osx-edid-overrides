@@ -20,7 +20,7 @@ fully replaces the display configuration (as discovered by @pdutourgeerling).
 It also places the override in the `/Library` rather than `/System/Library`
 location which works without going into recovery mode or even rebooting.
 
-While this worked for me, use it at your own risk. It might not work for your
+While this worked for me, ~use it at your own risk~. It might not work for your
 monitor, your version of OS X, your display cable, or any combination of those.
 
 ## Usage
@@ -29,7 +29,7 @@ Clone the repository and run the python script:
 ```bash
 $ git clone https://github.com/mbruggmann/osx-edid-overrides
 $ cd osx-edid-overrides
-$ python3 generate-override.py
+$ python3 generate_override.py
 Generating file Overrides/DisplayVendorID-10ac/DisplayProductId-d0fd
 Install the override for DELL P2720DC with the following command:
 sudo mkdir -p /Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac && sudo cp /Users/username/github/osx-edid-overrides/Overrides/DisplayVendorID-10ac/DisplayProductId-d0fd /Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac/DisplayProductId-d0fd
