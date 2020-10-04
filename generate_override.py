@@ -66,7 +66,6 @@ def generate_override_file(display, path):
     Generates an override file for the display
     """
     if path.exists():
-        print('File already exists, nothing to do', path)
         return path
 
     print('Generating file', path)
@@ -93,27 +92,34 @@ def generate_override_file(display, path):
 </plist>""")
 
 
-def print_install_command(display, path):
+def print_command(display, path):
     """
     Print out the command to install the override
     """
-    print(f"Install the override for {display.name} with the following command:")
 
     overrides = Path('/Library/Displays/Contents/Resources')
     source = path.absolute()
     target = overrides / path
     directory = target.parent
 
-    print(f"sudo mkdir -p {directory} && sudo cp {source} {target}")
+    if target.exists():
+        print(f"Override is present for {display.name}. Remove it with the following command:")
+        print(f"> sudo rm {target}")
+    else:
+        print(f"Override is not present for {display.name}. Install it with the following commands:")
+        print(f"> sudo mkdir -p {directory}")
+        print(f"> sudo cp {source} {target}")
+
 
 
 def main():
     ioreg = get_ioreg_displays()
     displays = find_display_data(ioreg)
     for display in displays:
+        print(f"Found display: {display.name}")
         path = path_for_override_file(display)
         generate_override_file(display, path)
-        print_install_command(display, path)
+        print_command(display, path)
 
 
 if __name__ == "__main__":
