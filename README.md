@@ -68,7 +68,6 @@ We have tried this in the following configurations:
 | Monitor         | Laptop                                    | OS                 | Cable   | Result                             |
 | --------------- | ----------------------------------------- | ------------------ | ------- | ---------------------------------- |
 | Dell P2720DC    | MacBook Pro (Retina, 13-inch, Early 2015) | Catalina (10.15.7) | HDMI    | :heavy_check_mark: Switched to RGB |
-| --------------- | ----------------------------------------- | ------------------ | ------- | ---------------------------------- |
 | Dell SE2417HGX  | MacBook Pro (Retina, 13-inch, 2017)       | Catalina (10.15.7) | HDMI    | :heavy_check_mark: Switched to RGB |
 
 ## Development
