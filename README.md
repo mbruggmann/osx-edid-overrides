@@ -69,6 +69,10 @@ We have tried this in the following configurations:
 | --------------- | ----------------------------------------- | ------------------ | ------- | ---------------------------------- |
 | Dell P2720DC    | MacBook Pro (Retina, 13-inch, Early 2015) | Catalina (10.15.7) | HDMI    | :heavy_check_mark: Switched to RGB |
 | Dell SE2417HGX  | MacBook Pro (Retina, 13-inch, 2017)       | Catalina (10.15.7) | HDMI    | :heavy_check_mark: Switched to RGB |
+| LG 24ML600M     | MacBook Pro (2019)                        | Catalina (10.15.7) | HDMI    | :heavy_check_mark: Switched to RGB |
+| any             | M1  Macs                                  |                    |         | :x: incompatible with script       |
+
+Unfortunately, this method seems to **not work on M1 Macs**. If anyone has access to such a machine and found a suitable workaround to override the monitor EDID configuration, feel free to open an issue or PR!
 
 ## Development
 
