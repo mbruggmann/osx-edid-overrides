@@ -56,8 +56,8 @@ def path_for_override_file(display):
     """
     Determine the path where the override file should be written
     """
-    vendorpath = "DisplayVendorID-%0.2x" % display.vendor_id
-    productpath = "DisplayProductID-%0.2x" % display.product_id
+    vendorpath = "DisplayVendorID-%x" % display.vendor_id
+    productpath = "DisplayProductID-%x" % display.product_id
     return Path('Overrides') / vendorpath / productpath
 
 

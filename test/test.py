@@ -25,6 +25,15 @@ class TestEdidOverrides(unittest.TestCase):
         path = path_for_override_file(display)
         self.assertEqual(path, Path('Overrides/DisplayVendorID-10ac/DisplayProductID-d0fd'))
 
+    def test_path_for_override_file_product_1(self):
+        display = Display(
+            vendor_id = 2,
+            product_id = 1,
+            name = 'display',
+            edid = 'foobar'
+        )
+        path = path_for_override_file(display)
+        self.assertEqual(path, Path('Overrides/DisplayVendorID-2/DisplayProductID-1'))
 
 if __name__ == '__main__':
     unittest.main()
